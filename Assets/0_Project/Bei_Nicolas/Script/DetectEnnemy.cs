@@ -7,15 +7,15 @@ using UnityEngine.Events;
 // ATTENTION// 
 // MAKE SURE THE ENNEMY HAS A TAG "Ennemy" !
 
-public class Detectenemy : MonoBehaviour
+public class DetectEnemy : MonoBehaviour
 {
-    [SerializeField] string EnnemyTag = "Enemy";
+    [SerializeField] string enemyTag = "Enemy";
     public UnityEvent onCollision;
 
     void OnCollisionEnter(Collision collision)
     {
         
-        if (collision.gameObject.CompareTag(EnnemyTag))
+        if (collision.gameObject.CompareTag(enemyTag))
         {
             onCollision.Invoke();
         }
