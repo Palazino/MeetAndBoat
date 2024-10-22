@@ -146,6 +146,7 @@ MonoBehaviour:
   wanderIntervalMin: 1
   wanderIntervalMax: 2
   wanderDistance: 5
+  shootTrigger: {fileID: 8759295162832964268}
   targetPosition: {x: 0, y: 0, z: 0}
   currentPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &2868506052072563156
@@ -222,3 +223,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2868506052072563156}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8759295162832964268 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6791920290376133496, guid: ded81100787451843a7f9d7a2f80325d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2868506052072563156}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92594e43cda55c44ba3182076ffbf7b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
