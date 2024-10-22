@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class Fire_Breather_pteroactyl_Move : MonoBehaviour
 {
-    public Transform player; // Référence au joueur
+    public Transform player; 
     public Transform pterodactyl;
-    public float speed = 2f; // Vitesse de déplacement
-    public float attackDistance = 1f; // Distance à laquelle l'ennemi attaque
-    public float detectionDistance = 150f; // Distance de détection du joueur
-    public float attackInterval = 2f; // Intervalle entre les attaques
+    public float speed = 2f; 
+    public float attackDistance = 1f; 
+    public float detectionDistance = 150f; 
+    public float attackInterval = 2f; 
+    public float wanderIntervalMin = 5f; 
+    public float wanderIntervalMax = 6f; 
+    public float wanderDistance = 5f; 
 
-    private Coroutine attackCoroutine; // Coroutine pour gérer l'attaque
+    private Coroutine attackCoroutine; 
+    private Coroutine wanderCoroutine; 
+
+    private void Start()
+    {
+        wanderCoroutine = StartCoroutine(Wander());
+    }
 
     private void Update()
     {
@@ -20,19 +29,15 @@ public class Fire_Breather_pteroactyl_Move : MonoBehaviour
 
     private void MoveTowardsPlayer()
     {
-        // Calculer la distance au joueur
         float distance = Vector3.Distance(pterodactyl.position, player.position);
 
-        // Vérifier si le joueur est dans la portée de détection
         if (distance < detectionDistance)
         {
-            // Si l'ennemi est suffisamment loin, il se déplace vers le joueur
             if (distance > attackDistance)
             {
                 Vector3 direction = (player.position - pterodactyl.position).normalized;
                 pterodactyl.position += direction * speed * Time.deltaTime;
 
-                // Démarrer la coroutine d'attaque si elle n'est pas déjà en cours
                 if (attackCoroutine == null)
                 {
                     attackCoroutine = StartCoroutine(Attack());
@@ -40,7 +45,6 @@ public class Fire_Breather_pteroactyl_Move : MonoBehaviour
             }
             else
             {
-                // Arrêter la coroutine d'attaque si elle est en cours
                 if (attackCoroutine != null)
                 {
                     StopCoroutine(attackCoroutine);
@@ -50,7 +54,6 @@ public class Fire_Breather_pteroactyl_Move : MonoBehaviour
         }
         else
         {
-            // Si le joueur s'éloigne, arrêter la coroutine d'attaque
             if (attackCoroutine != null)
             {
                 StopCoroutine(attackCoroutine);
@@ -63,9 +66,26 @@ public class Fire_Breather_pteroactyl_Move : MonoBehaviour
     {
         while (true)
         {
-            // Logique d'attaque (par exemple, infliger des dégâts, jouer une animation, etc.)
             Debug.Log("Attaque !");
-            yield return new WaitForSeconds(attackInterval); // Attendre l'intervalle avant la prochaine attaque
+            yield return new WaitForSeconds(attackInterval); 
+        }
+    }
+
+    private IEnumerator Wander()
+    {
+        while (true)
+        {
+            Vector3 randomDirection = new Vector3(Random.Range(-wanderDistance, wanderDistance), Random.Range(-wanderDistance, wanderDistance), Random.Range(-wanderDistance, wanderDistance));
+            Vector3 targetPosition = pterodactyl.position + randomDirection;
+
+            while (Vector3.Distance(pterodactyl.position, targetPosition) > 0.1f)
+            {
+                pterodactyl.position = Vector3.MoveTowards(pterodactyl.position, targetPosition, speed * Time.deltaTime);
+                yield return null; 
+            }
+
+            float waitTime = Random.Range(wanderIntervalMin, wanderIntervalMax);
+            yield return new WaitForSeconds(waitTime);
         }
     }
 }
