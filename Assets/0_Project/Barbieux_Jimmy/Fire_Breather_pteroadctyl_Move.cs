@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fire_Breather_pterodactyl_Move : MonoBehaviour
+public class Fire_Breather_pteroactyl_Move : MonoBehaviour
 {
     public Transform player; 
     public Transform pterodactyl;
