@@ -16,7 +16,8 @@ public class RespawnPlayerCollider : MonoBehaviour
     }
 
     // Respawn the object at the defined respawn point
-    void Respawn()
+    [ContextMenu("Respawn")]
+    public void Respawn()
     {
         // Reset the object's position to the respawn point
         Transform RandomRespawnPoint = GetRandomRespawnPosition();
