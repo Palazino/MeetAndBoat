@@ -1,51 +1,78 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RespawnPlayerCollider : MonoBehaviour
 {
-   
-    public Transform[] respawnPoint;
+    public Transform[] respawnPoints; // Points de respawn
+    public string collisionTag = "RespawnTrigger"; // Tag à vérifier pour le respawn
+    private Transform lastRespawnPoint; // Dernier point de respawn utilisé
 
-    public string collisionTag = "RespawnTrigger";
-
-    // When a collision is detected
+    // Détecte les collisions
     private void OnCollisionEnter(Collision collision)
     {
-        // Check if the object collided with has the specified tag
-        if (collision.collider.CompareTag(collisionTag)) Respawn();
-        
-    }
-
-    // Respawn the object at the defined respawn point
-    [ContextMenu("Respawn")]
-    public void Respawn()
-    {
-        // Reset the object's position to the respawn point
-        Transform RandomRespawnPoint = GetRandomRespawnPosition();
-
-        //transform.position = respawnPoint[].position;
-
-        Rigidbody rb = GetComponent<Rigidbody>();
-        
-        if (RandomRespawnPoint != null) transform.position = RandomRespawnPoint.position;
-        
-        if (rb != null)
+        if (collision.collider.CompareTag(collisionTag))
         {
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
+            Debug.Log("Collision détectée avec : " + collision.collider.name);
+            Respawn();
         }
     }
 
-    private Transform GetRandomRespawnPosition()
+    // Respawn l'objet au point de respawn défini
+    [ContextMenu("Respawn")]
+    public void Respawn()
     {
-
-        if (respawnPoint.Length > 0)
+        Transform newRespawnPoint = GetRandomRespawnPosition();
+        if (newRespawnPoint != null)
         {
-            int randomIndex = Random.Range(0, respawnPoint.Length);
-            return respawnPoint[randomIndex];
+            Debug.Log("Respawn au point : " + newRespawnPoint.name);
+            transform.position = newRespawnPoint.position;
+
+            Rigidbody rb = GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+                Debug.Log("Vélocité réinitialisée pour : " + gameObject.name);
+            }
+
+            lastRespawnPoint = newRespawnPoint; // Met à jour le dernier point de respawn utilisé
         }
         else
         {
             Debug.LogWarning("Aucun point de respawn défini!");
+        }
+    }
+
+    // Retourne une position de respawn aléatoire qui n'est pas la même que la précédente
+    private Transform GetRandomRespawnPosition()
+    {
+        List<Transform> availableRespawnPoints = new List<Transform>(respawnPoints);
+
+        // Supprime le dernier point de respawn utilisé de la liste des points disponibles
+        if (lastRespawnPoint != null)
+        {
+            availableRespawnPoints.Remove(lastRespawnPoint);
+        }
+
+        // Vérifier que des points de respawn sont disponibles
+        if (availableRespawnPoints.Count == 0 && respawnPoints.Length > 0)
+        {
+            // Si tous les points ont été utilisés, réinitialiser la liste pour éviter de se bloquer
+            availableRespawnPoints = new List<Transform>(respawnPoints);
+            Debug.LogWarning("Tous les points de respawn ont été utilisés, réinitialisation.");
+            availableRespawnPoints.Remove(lastRespawnPoint);
+        }
+
+        if (availableRespawnPoints.Count > 0)
+        {
+            int randomIndex = Random.Range(0, availableRespawnPoints.Count);
+            Debug.Log("Point de respawn choisi : " + availableRespawnPoints[randomIndex].name);
+            return availableRespawnPoints[randomIndex];
+        }
+        else
+        {
+            Debug.LogWarning("Aucun point de respawn disponible!");
             return null;
         }
     }
