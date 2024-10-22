@@ -9,9 +9,6 @@ public class ShootCanon : MonoBehaviour
     [SerializeField] Transform shootPoint;
     [SerializeField] float shootForce = 10f;
     [SerializeField] float curveAmount = 2f;
-
-
-
     [SerializeField] float projectilSize = 0.05f;
     public void ShootProjectile()
     {
@@ -26,6 +23,8 @@ public class ShootCanon : MonoBehaviour
             
             rb.useGravity = true;
             projectile.transform.localScale = Vector3.one * projectilSize;
+
+            projectile.AddComponent<DestroyEnemy>();
     }
 
 }
