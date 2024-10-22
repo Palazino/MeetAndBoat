@@ -8,7 +8,7 @@ public class Fire_Breather_pteroactyl_Move : MonoBehaviour
     public Transform pterodactyl;
     public float speed = 2f; 
     public float attackDistance = 1f; 
-    public float detectionDistance = 150f; 
+    public float detectionDistance = 15f; 
     public float attackInterval = 2f; 
     public float wanderIntervalMin = 5f; 
     public float wanderIntervalMax = 6f; 
@@ -17,7 +17,7 @@ public class Fire_Breather_pteroactyl_Move : MonoBehaviour
     private Coroutine attackCoroutine; 
     private Coroutine wanderCoroutine; 
 
-    private void Start()
+    private void OnEnable()
     {
         wanderCoroutine = StartCoroutine(Wander());
     }
@@ -71,21 +71,26 @@ public class Fire_Breather_pteroactyl_Move : MonoBehaviour
         }
     }
 
+
+    public Vector3 targetPosition;
+    public Vector3 currentPosition;
     private IEnumerator Wander()
     {
         while (true)
         {
             Vector3 randomDirection = new Vector3(Random.Range(-wanderDistance, wanderDistance), Random.Range(-wanderDistance, wanderDistance), Random.Range(-wanderDistance, wanderDistance));
-            Vector3 targetPosition = pterodactyl.position + randomDirection;
+             targetPosition = pterodactyl.position + randomDirection;
 
             while (Vector3.Distance(pterodactyl.position, targetPosition) > 0.1f)
             {
                 pterodactyl.position = Vector3.MoveTowards(pterodactyl.position, targetPosition, speed * Time.deltaTime);
-                yield return null; 
+                currentPosition = pterodactyl.position;
+                yield return new WaitForEndOfFrame(); 
             }
 
             float waitTime = Random.Range(wanderIntervalMin, wanderIntervalMax);
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(waitTime); 
+            yield return new WaitForEndOfFrame();
         }
     }
 }
