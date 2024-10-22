@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RespawnPlayerCollider : MonoBehaviour
+public class RespawnPlayerColliderEnemy : MonoBehaviour
 {
     public Transform[] respawnPoints; // Points de respawn
     public string collisionTag = "RespawnTrigger"; // Tag à vérifier pour le respawn
