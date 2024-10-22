@@ -28,7 +28,7 @@
       "dependencies": {
         "com.unity.probuilder": "5.2.3"
       },
-      "hash": "44fc9aed8bd392d9e38cddf0141b1d8ef7457dd7"
+      "hash": "78421aed9f946df4b542e4926149575cb1c601af"
     },
     "com.unity.burst": {
       "version": "1.8.17",
