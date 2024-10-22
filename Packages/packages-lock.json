@@ -28,7 +28,14 @@
       "dependencies": {
         "com.unity.probuilder": "5.2.3"
       },
-      "hash": "91ac21d872b46de8bb53328de7c0edee9cf00f17"
+      "hash": "78421aed9f946df4b542e4926149575cb1c601af"
+    },
+    "be.elab.tickcollection": {
+      "version": "https://github.com/EloiStree/2024_08_05_TickCollection.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "3cfcd83ec53a62b3e3fb5f3ccf312aec0a4d74ff"
     },
     "com.unity.burst": {
       "version": "1.8.17",
