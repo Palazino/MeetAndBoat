@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RespawnPlayerCollider : MonoBehaviour
+public class RespawnPlayerColliderEnemy : MonoBehaviour
 {
    
     public Transform[] respawnPoint;
