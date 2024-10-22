@@ -9,7 +9,9 @@ public class Fire_Breather_pteroactyl_Move : MonoBehaviour
     public float speed = 2f; // Vitesse de déplacement
     public float attackDistance = 1f; // Distance à laquelle l'ennemi attaque
     public float detectionDistance = 150f; // Distance de détection du joueur
-    
+    public float attackInterval = 2f; // Intervalle entre les attaques
+
+    private Coroutine attackCoroutine; // Coroutine pour gérer l'attaque
 
     private void Update()
     {
@@ -29,18 +31,41 @@ public class Fire_Breather_pteroactyl_Move : MonoBehaviour
             {
                 Vector3 direction = (player.position - pterodactyl.position).normalized;
                 pterodactyl.position += direction * speed * Time.deltaTime;
+
+                // Démarrer la coroutine d'attaque si elle n'est pas déjà en cours
+                if (attackCoroutine == null)
+                {
+                    attackCoroutine = StartCoroutine(Attack());
+                }
             }
             else
             {
-                // Ici, tu peux ajouter la logique d'attaque
-                Attack();
+                // Arrêter la coroutine d'attaque si elle est en cours
+                if (attackCoroutine != null)
+                {
+                    StopCoroutine(attackCoroutine);
+                    attackCoroutine = StartCoroutine(Attack());
+                }
+            }
+        }
+        else
+        {
+            // Si le joueur s'éloigne, arrêter la coroutine d'attaque
+            if (attackCoroutine != null)
+            {
+                StopCoroutine(attackCoroutine);
+                attackCoroutine = null;
             }
         }
     }
 
-    private void Attack()
+    private IEnumerator Attack()
     {
-        // Logique d'attaque (par exemple, infliger des dégâts, jouer une animation, etc.)
-        Debug.Log("Attaque !");
+        while (true)
+        {
+            // Logique d'attaque (par exemple, infliger des dégâts, jouer une animation, etc.)
+            Debug.Log("Attaque !");
+            yield return new WaitForSeconds(attackInterval); // Attendre l'intervalle avant la prochaine attaque
+        }
     }
 }
