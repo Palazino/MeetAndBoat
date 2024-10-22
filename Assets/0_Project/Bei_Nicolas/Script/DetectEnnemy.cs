@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 // ATTENTION// 
@@ -8,14 +9,15 @@ using UnityEngine;
 
 public class Detectenemy : MonoBehaviour
 {
-    public string EnnemyTag = "Ennemy"; 
+    [SerializeField] string EnnemyTag = "Enemy";
+    public UnityEvent onCollision;
 
     void OnCollisionEnter(Collision collision)
     {
         
         if (collision.gameObject.CompareTag(EnnemyTag))
         {
-            Destroy(gameObject); 
+            onCollision.Invoke();
         }
     }
 }
