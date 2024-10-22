@@ -58,7 +58,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859797274300494165}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6755902, y: 0, z: 0, w: 0.7372774}
+  m_LocalRotation: {x: 0.7372773, y: 0, z: 0, w: 0.6755902}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_angleAdjustment: 90
-  m_angle: -5
+  m_angle: 5
   m_minAngle: -5
   m_maxAngle: 90
   m_rotationAxis: {x: 1, y: 0, z: 0}
