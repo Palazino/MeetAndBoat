@@ -240,6 +240,12 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!198 &174102845 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8085629903158977599, guid: ded81100787451843a7f9d7a2f80325d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7903955217660847129}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &803160396
 GameObject:
   m_ObjectHideFlags: 0
@@ -5297,6 +5303,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PterodatyleMathiasFlame
       objectReference: {fileID: 0}
+    - target: {fileID: 6791920290376133496, guid: ded81100787451843a7f9d7a2f80325d,
+        type: 3}
+      propertyPath: particleSystem
+      value: 
+      objectReference: {fileID: 174102845}
     - target: {fileID: 8720563555585161399, guid: ded81100787451843a7f9d7a2f80325d,
         type: 3}
       propertyPath: m_LocalPosition.x
