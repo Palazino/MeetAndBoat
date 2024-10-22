@@ -2,20 +2,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class CanonAxisVMono : MonoBehaviour
+public class CanonAxisMono : MonoBehaviour
 {
 
-    public float m_angleAdjustment=90f;
-    public float m_angleX = -5;
-    public float m_angleY = 90;
-    public float m_minAngleX=-180;
-    public float m_maxAngleX=180;
-    public float m_minAngleY=-180;
-    public float m_maxAngleY=180;
+    public float m_angleAdjustment = 90f;
+    public float m_angle = 20;
+    public float m_minAngle = -5;
+    public float m_maxAngle = 90;
     public Vector3 m_rotationAxis = Vector3.up;
     public Transform m_whatToRotate;
-    public bool m_inversValueX=true;
+    public bool m_inversValue = true;
+
+    
+
 
     private void OnValidate()
     {
@@ -25,27 +26,22 @@ public class CanonAxisVMono : MonoBehaviour
 
     void Update()
     {
-
         RefreshPosition();
     }
 
-    public void SetAngleX(float angle) {
-        m_angleX=angle;
-    }
-    public void SetAngleY(float angle) {
-        m_angleY=angle;
+    public void SetAngleWithAngle(float angle)
+    {
+        m_angle = angle;
     }
 
-    public void SetPercentAngleX(float percent)
+    public void SetPercentAngle01(float percent)
     {
-        m_angleX = Mathf.Lerp(m_minAngleX, m_maxAngleX, percent);
+        m_angle = Mathf.Lerp(m_minAngle, m_maxAngle, percent);
     }
     public void SetPercentAngle11(float percent)
     {
-        float normalizedPercent = Mathf.Clamp01(percent);
-        float targetAngle = Mathf.Lerp(m_minAngleY, m_maxAngleY, normalizedPercent);
-        targetAngle = NormalizedPercent(targetAngle);
-        m_angleY = targetAngle;
+        float adjustPercent = (percent + 1f) / 2f;
+        SetPercentAngle01(adjustPercent);
     }
 
     private float NormalizedPercent(float angle)
@@ -57,12 +53,8 @@ public class CanonAxisVMono : MonoBehaviour
 
     private void RefreshPosition()
     {
-        m_angleX = Mathf.Clamp(m_angleX, m_minAngleX, m_maxAngleX);
-        m_angleY = Mathf.Clamp(m_angleY, m_minAngleY, m_maxAngleY);
-        float applyAngleX = m_angleX;
-        float applyAngleY = m_angleY;
-        if (m_inversValueX)
-            applyAngleX *= -1;
-        m_whatToRotate.rotation = Quaternion.Euler(applyAngleX + m_angleAdjustment, applyAngleY,0);
+        m_angle = Mathf.Clamp(m_angle, m_minAngle, m_maxAngle);
+        float applyAngle = m_angle = m_inversValue ? -m_angle : m_angle;
+        m_whatToRotate.rotation = Quaternion.Euler(m_angleAdjustment + applyAngle, m_angle, 0);
     }
 }
