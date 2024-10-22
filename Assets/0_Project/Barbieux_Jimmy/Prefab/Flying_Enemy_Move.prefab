@@ -98,11 +98,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e3797ab8073e4894a9a70dadfa179032,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 255197577285667157}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3797ab8073e4894a9a70dadfa179032, type: 3}
 --- !u!4 &501955549545748445 stripped
 Transform:
@@ -110,30 +106,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 107510886126104630}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &989838938682527079 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e3797ab8073e4894a9a70dadfa179032,
-    type: 3}
-  m_PrefabInstance: {fileID: 107510886126104630}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &255197577285667157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 989838938682527079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c993e535c453b604bbe8c5e3ee1d0a1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  pterodactyl: {fileID: 998113552441663515}
-  speed: 2
-  attackDistance: 1
-  detectionDistance: 150
-  attackInterval: 2
-  wanderIntervalMin: 5
-  wanderIntervalMax: 6
-  wanderDistance: 5
