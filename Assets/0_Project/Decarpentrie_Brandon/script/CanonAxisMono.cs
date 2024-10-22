@@ -55,6 +55,6 @@ public class CanonAxisMono : MonoBehaviour
     {
         m_angle = Mathf.Clamp(m_angle, m_minAngle, m_maxAngle);
         float applyAngle = m_angle = m_inversValue ? -m_angle : m_angle;
-        m_whatToRotate.rotation = Quaternion.Euler(m_angleAdjustment + applyAngle, m_angle, 0);
+        m_whatToRotate.localRotation = Quaternion.Euler(m_rotationAxis*( m_angleAdjustment + applyAngle));
     }
 }

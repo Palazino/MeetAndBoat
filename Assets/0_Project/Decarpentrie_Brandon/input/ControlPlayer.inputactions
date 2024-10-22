@@ -2,94 +2,41 @@
     "name": "ControlPlayer",
     "maps": [
         {
-            "name": "MoveCanon",
-            "id": "e0860c6f-3c19-444e-96d4-7003dcdc19bc",
+            "name": "shoot",
+            "id": "01e18f02-d9e2-415d-b1f8-4b00adf02673",
             "actions": [
                 {
-                    "name": "moveBouche",
-                    "type": "Value",
-                    "id": "578a3572-0ecd-42ec-b7ec-9340a3515399",
-                    "expectedControlType": "Axis",
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "5f45d738-0081-405e-8be0-b33561ec4739",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "rotationCanon",
-                    "type": "Value",
-                    "id": "4df6c3d1-5b6b-4f6a-a932-f0e46c217652",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
-                    "name": "bas&haut",
-                    "id": "bb0e64d1-21bc-4395-b99f-3a8fb0013456",
-                    "path": "1DAxis",
+                    "name": "",
+                    "id": "4a6e15cd-1469-4649-824d-6436fc5d2ce3",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "moveBouche",
-                    "isComposite": true,
+                    "action": "New action",
+                    "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
-                    "id": "1376575b-3495-429f-a3e7-93ff90223d9c",
-                    "path": "<Keyboard>/s",
+                    "name": "",
+                    "id": "b5cec9c1-d7f8-4fe5-814e-e0f2bd1a5682",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "moveBouche",
+                    "action": "New action",
                     "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "ff3e7fd0-16e0-47d1-a161-7b5cf282986c",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "moveBouche",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "gauche&droite",
-                    "id": "fe036fed-4cc8-4329-8e0a-f7ba1b3e20a5",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "rotationCanon",
-                    "isComposite": true,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "b40ec03d-2c66-43b1-9bbe-5c31d5471298",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "rotationCanon",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "69fe515c-f401-4006-b3d4-9f609f0c5940",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "rotationCanon",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 }
             ]
         }
