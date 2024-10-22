@@ -364,6 +364,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2018432495 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8988702647439717165, guid: 6a3496fb583379246a843aa78f3d1297,
+    type: 3}
+  m_PrefabInstance: {fileID: 6365244424527184296}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2018432496 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 943750557543367766, guid: 6a3496fb583379246a843aa78f3d1297,
+    type: 3}
+  m_PrefabInstance: {fileID: 6365244424527184296}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2018432497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018432495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c993e535c453b604bbe8c5e3ee1d0a1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1288552223}
+  pterodactyl: {fileID: 2018432496}
+  speed: 2
+  attackDistance: 1
+  detectionDistance: 10
+  attackInterval: 2
+  wanderIntervalMin: 1
+  wanderIntervalMax: 2
+  wanderDistance: 5
+  targetPosition: {x: 0, y: 0, z: 0}
+  currentPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &2098519214
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,6 +530,21 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1288552223}
+    - target: {fileID: 236515968625274136, guid: 6a3496fb583379246a843aa78f3d1297,
+        type: 3}
+      propertyPath: wanderDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 236515968625274136, guid: 6a3496fb583379246a843aa78f3d1297,
+        type: 3}
+      propertyPath: wanderIntervalMax
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 236515968625274136, guid: 6a3496fb583379246a843aa78f3d1297,
+        type: 3}
+      propertyPath: wanderIntervalMin
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1066509131735664776, guid: 6a3496fb583379246a843aa78f3d1297,
         type: 3}
       propertyPath: m_Name
@@ -550,10 +600,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 236515968625274136, guid: 6a3496fb583379246a843aa78f3d1297, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8988702647439717165, guid: 6a3496fb583379246a843aa78f3d1297,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2018432497}
   m_SourcePrefab: {fileID: 100100000, guid: 6a3496fb583379246a843aa78f3d1297, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
