@@ -22,6 +22,13 @@ public class Fire_Breather_pteroactyl_Move : MonoBehaviour
 
     private void Start()
     {
+        if (this.player == null)
+        {
+
+       GameObject playerlocal = GameObject.FindGameObjectWithTag("Player");
+        if (playerlocal != null)
+            this.player = playerlocal.transform;
+        }
         shootTrigger = GetComponent<ShootTrigger>();
     }
     private void OnEnable()
