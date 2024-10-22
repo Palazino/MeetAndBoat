@@ -5,10 +5,12 @@ public class NotifyNewPlayerMono : MonoBehaviour{
 
     public UnityEvent<Transform> m_onNewPlayer;
     public Transform m_player;
-    void Awake() {
-        PlayerTagMono.m_onNewPlayer+=OnNewPlayer;
+    void OnEnable() {
+        PlayerTagMono.StartListeningToNewPlayer(OnNewPlayer);
         OnNewPlayer();
-
+    }
+    void OnDisable() {
+        PlayerTagMono.StopListeningToNewPlayer(OnNewPlayer);
     }
     private void OnNewPlayer()
     {
