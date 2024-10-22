@@ -4,19 +4,26 @@ using UnityEngine;
 
 public class Fire_Breather_pteroactyl_Move : MonoBehaviour
 {
-    public Transform player; 
+    public Transform player;
     public Transform pterodactyl;
-    public float speed = 2f; 
-    public float attackDistance = 1f; 
-    public float detectionDistance = 15f; 
-    public float attackInterval = 2f; 
-    public float wanderIntervalMin = 5f; 
-    public float wanderIntervalMax = 6f; 
-    public float wanderDistance = 5f; 
+    public float speed = 2f;
+    public float attackDistance = 1f;
+    public float detectionDistance = 15f;
+    public float attackInterval = 2f;
+    public float wanderIntervalMin = 5f;
+    public float wanderIntervalMax = 6f;
+    public float wanderDistance = 5f;
 
-    private Coroutine attackCoroutine; 
-    private Coroutine wanderCoroutine; 
+    private Coroutine attackCoroutine;
+    private Coroutine wanderCoroutine;
 
+    // Référence à ShootTrigger
+    public ShootTrigger shootTrigger;
+
+    private void Start()
+    {
+        shootTrigger = GetComponent<ShootTrigger>();
+    }
     private void OnEnable()
     {
         wanderCoroutine = StartCoroutine(Wander());
@@ -66,11 +73,16 @@ public class Fire_Breather_pteroactyl_Move : MonoBehaviour
     {
         while (true)
         {
+            // Appeler la méthode de tir
+            if (shootTrigger != null)
+            {
+                shootTrigger.Shoot();
+            }
+
             Debug.Log("Attaque !");
-            yield return new WaitForSeconds(attackInterval); 
+            yield return new WaitForSeconds(attackInterval);
         }
     }
-
 
     public Vector3 targetPosition;
     public Vector3 currentPosition;
@@ -79,17 +91,17 @@ public class Fire_Breather_pteroactyl_Move : MonoBehaviour
         while (true)
         {
             Vector3 randomDirection = new Vector3(Random.Range(-wanderDistance, wanderDistance), Random.Range(-wanderDistance, wanderDistance), Random.Range(-wanderDistance, wanderDistance));
-             targetPosition = pterodactyl.position + randomDirection;
+            targetPosition = pterodactyl.position + randomDirection;
 
             while (Vector3.Distance(pterodactyl.position, targetPosition) > 0.1f)
             {
                 pterodactyl.position = Vector3.MoveTowards(pterodactyl.position, targetPosition, speed * Time.deltaTime);
                 currentPosition = pterodactyl.position;
-                yield return new WaitForEndOfFrame(); 
+                yield return new WaitForEndOfFrame();
             }
 
             float waitTime = Random.Range(wanderIntervalMin, wanderIntervalMax);
-            yield return new WaitForSeconds(waitTime); 
+            yield return new WaitForSeconds(waitTime);
             yield return new WaitForEndOfFrame();
         }
     }
